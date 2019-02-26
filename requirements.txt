@@ -5,3 +5,4 @@ django-crispy-forms==1.7.2
 psycopg2==2.7.7
 psycopg2-binary==2.7.7
 virtualenv==16.4.1
+gunicorn==19.9.0
