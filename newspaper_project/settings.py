@@ -80,14 +80,17 @@ WSGI_APPLICATION = 'newspaper_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
-
+"""
+WARNING:
+When deploying to heroku visit data.heroku.com to see the details of the heroku provided databse before deploying
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'blog',
-        'USER': 'blog',
-        'PASSWORD': 'blog',
-        'HOST': 'localhost',
+        'NAME': 'd2dckr4aab3saj',
+        'USER': 'mekgzgjacnnwkv',
+        'PASSWORD': ' c910f0da7eda3b818ce438ce05fcb65f54f3364c8585f841497b9b0c66156e8c',
+        'HOST': 'ec2-54-204-2-25.compute-1.amazonaws.com',
     }
 }
 
