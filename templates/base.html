@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Vik{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="{% url 'home' %}">Vik</a>
+  {% if user.is_authenticated %}
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#"></a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{user.username}}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="{% url 'logout' %}">Log Out</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Change Password(Disabled)</a>
+        </div>
+      </li>
+      <form class="form-inline">
+        <a href="{% url 'article_new' %}" class="btn btn-outline-secondary">+ New</a>
+      </form>
+    </ul>
+    <form class="form-inline my-2 my-lg-0" method="GET" action="{% url 'search' %}">
+      <input class="form-control mr-sm-2" type="search" name="q" placeholder="Search" aria-label="Search" value="{{request.GET.q}}">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+    </form>
+    {% else %}
+    <form class="form-inline">
+      <a href="{% url 'login' %}" class="btn btn-outline-secondary">Login</a>
+      <a href="{% url 'signup' %}" class="btn btn-primary ml-2">Sign Up</a>
+    </form>
+    {% endif %}
+  </div>
+</nav>
+    <div class="container">
+      {% block content %}
+      {% endblock content %}
+    </div>
+  </body>
+</html>

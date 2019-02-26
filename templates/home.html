@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+<br>
+<br>
+<div class="jumbotron">
+  <h1 class="display-4">Vik</h1>
+  <p class="lead">Connect with others:<br /> Share stories, news, and quotes!</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'article_list' %}" role="button">View all connections</a>
+  </p>
+</div>
+<div class="jumbotron">
+  <h1 class="display-4">Vik Terms Of Service</h1>
+  <p class="lead">The Legal Stuff </p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="{% url 'tos' %}" role="button">Take Me There</a>
+  </p>
+</div>
+<div class="jumbotron">
+  <h1 class="display-4">Do you know how we can improve?</h1>
+  <p class="lead"><br><br>Email me at jbsalenger@outlook.com</p>
+</div>
+{% endblock content %}
