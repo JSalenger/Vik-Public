@@ -15,5 +15,5 @@ urlpatterns = [
     path('new/', ArticleCreateView.as_view(), name='article_new'),
     path('', ArticleListView, name='article_list'),
     path('<int:pk>/comment', CommentCreateView.as_view(), name='comment_create'),
-    path(r'^results/$', search, name='search')
+    path(r'^results/$', search, name='search'),
 ]
