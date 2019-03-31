@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% block title %}Posts{% endblock title %}
 {% block content %}
-{% for article in object_list %}
 <br>
 <div class="alert alert-success" role="alert">
   You can now format text in your post, meaning if you type this: <br> Me: Vik is awesome <br> Everyone: Yeah <br> it won't come out as: <br> Me: I love vik Everyone: Yeah
 </div>
+{% for article in object_list %}
+
 <br>
 <br>
 <div class="card">
