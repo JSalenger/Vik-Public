@@ -1,4 +1,6 @@
-# Not much to say here
-## The deps. are in the Django settings.py file, after installing them do
-# -----------------------------------------------
-### python manage.py runserver
+# Not much to say here:
+#### The deps. are in the Django settings.py file, after installing them do
+#### `python manage.py runserver`
+
+## Better readme coming
+##### I promise :P
