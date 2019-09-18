@@ -1,0 +1,146 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-2621587618729906",
+    enable_page_level_ads: true
+  });
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="{% static 'node_modules/waypoints/lib/jquery.waypoints.min.js' %}" type="text/javascript"></script>
+<script src="{% static 'node_modules/waypoints/lib/shortcuts/infinite.min.js' %}"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/components/card.min.css">
+<meta property="og:title" content="Vik" />
+<meta property="og:site_name" content="vik.fyi" />
+<meta property="og:description" content="Free and open social networking platform. Connect with others on vik." />
+<meta property="og:image" content="{% static 'favicon.png' %}" />
+{% endblock head %}
+{% block title %}Posts{% endblock title %}
+{% block content %}
+
+<br>
+
+<form class="" method="GET" action="{% url 'search' %}">
+  <div class="ui fluid action input">
+    <input class="" type="search" name="q" placeholder="Search Vik" aria-label="Search" value="{{request.GET.q}}">
+    <button class="ui button" type="submit" name="button"><i class="search icon"></i>Search</button>
+  </div>
+</form>
+
+<div class="ui section divider"></div>
+{% for article in posts %}
+
+<div class="ui fluid card">
+  <div class="content">
+    <div class="right floated meta">{{ article.date }}</div>
+    <img class="ui avatar image" src="{% static 'favicon.png' %}"> {{ article.author }}
+  </div>
+  <div class="image">
+    {% if article.image %}
+    <img src="{{ article.image.url }}">
+    {% endif %}
+  </div>
+  <div class="content">
+    <a href="{% url 'article_detail' article.pk %}">
+    <strong>{{ article.title }}</strong> <br></a>
+    <div class="ui section divider"></div>
+    {% if article.body %}
+    {{ article.body|linebreaks }}
+    {% endif %}
+    {% if user.is_authenticated and user == article.author %}
+    <br>
+    <br>
+      <div class="ui large transparent icon input">
+        <div class="ui buttons">
+          <a href="{% url 'article_edit' article.pk %}">
+            <button class="ui button">Edit</button>
+          </a>
+          <div class="or"></div>
+          <a href="{% url 'article_delete' article.pk %}">
+            <button class="ui negative button">Delete</button>
+          </a>
+        </div>
+      </div>
+    <br>
+    <br>
+    {% endif %}
+  </div>
+  <div class="extra content">
+    <a href="{% url 'article_detail' article.pk %}">
+        <span class="right floated">
+          <i class="comment icon"></i>
+          Comment
+        </span>
+    </a>
+        <i class="heart outline like icon"></i>
+        {{ article.likes.count }} likes
+
+  </div>
+</div>
+<br/>
+<br>
+{% endfor %}
+{% if posts.has_next and posts.has_previous %}
+<div class="ui grid">
+  <div class="eight wide column">
+    <a href="?page={{ posts.previous_page_number }}">
+      <div class="ui fluid vertical animated button" tabindex="0">
+        <div class="visible content">Previous</div>
+        <div class="hidden content">
+          <i class="left arrow icon"></i>
+        </div>
+      </div>
+    </a>
+  </div>
+  <div class="eight wide column">
+    <a href="?page={{ posts.next_page_number}}">
+      <div class="ui fluid animated button" tabindex="0">
+        <div class="visible content">Next</div>
+        <div class="hidden content">
+          <i class="right arrow icon"></i>
+        </div>
+      </div>
+    </a>
+  </div>
+</div>
+
+{% elif posts.has_next %}
+<a href="?page={{ posts.next_page_number}}">
+  <div class="ui fluid animated button" tabindex="0">
+    <div class="visible content">Next</div>
+    <div class="hidden content">
+      <i class="right arrow icon"></i>
+    </div>
+  </div>
+</a>
+{% elif posts.has_previous %}
+<a href="?page={{ posts.previous_page_number }}">
+  <div class="ui vertical fluid animated button" tabindex="0">
+    <div class="visible content">Previous</div>
+    <div class="hidden content">
+      <i class="left arrow icon"></i>
+    </div>
+  </div>
+</a>
+{% endif %}
+<br>
+<br>
+<div class="spinner-grow text-success" role="status">
+  <span class="sr-only">Loading...</span>
+</div>
+
+<script>
+  var infinite = new Waypoint.Infinite({
+    element: $('.infinite-container')[0],
+    onBeforePageLoad: function () {
+      $('.loading').show();
+    },
+    onAfterPageLoad: function ($items) {
+      $('.loading').hide();
+    }
+  });
+</script>
+{% endblock content %}

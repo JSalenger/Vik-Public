@@ -1,0 +1,33 @@
+{% extends 'polls/base.html' %}
+
+{% block content %}
+<h1>Polls</h1>
+{% if object_list %}
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Question</th>
+            <th scope="col">Desc.</th>
+            <th scope="col">Date</th>
+            <th scope="col">Link</th> 
+          </tr>
+        </thead>
+        <tbody>
+{% for poll in object_list %}
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{ poll.question }}</td>
+            <td>{{ poll.description }}</td>
+            <td>{{ poll.date }}</td>
+            <td>
+              <a href="{% url 'polls:detail' poll.id %}" class="btn btn-info btn-sm active" role="button" aria-pressed="true">Link</a>
+            </td>
+          </tr>
+{% endfor %}
+        </tbody>
+      </table>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}
+{% endblock %}

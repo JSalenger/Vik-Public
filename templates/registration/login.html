@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+
+<h2>Log In</h2>
+<p>Nice to see you again!</p>
+<div class="ui grid">
+  <div class="six wide column">
+  </div>
+  <div class="six wide column">
+    <i class=" massive id card icon" style="border-color: white;"></i>
+  </div>
+  <div class="six wide column">
+  </div>
+</div>
+<div class="ui section divider"></div>
+
+<form class="login-form" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button class="ui button" type="submit">Submit</button>
+</form>
+<br>
+{%  endblock content %}

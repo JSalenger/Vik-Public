@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Sign Up{% endblock title %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h2>Sign Up</h2>
+<p>Password reset machine broke :P</p>
+<div class="ui grid">
+  <div class="six wide column">
+  </div>
+  <div class="six wide column">
+    <i class=" massive user plus icon" style="border-color: white;"></i>
+  </div>
+  <div class="six wide column">
+  </div>
+</div>
+<form class="signup-form" method="post">
+  {% csrf_token %}
+  {{ form.media.js }}
+  {{ form|crispy }}
+  <button class="ui button" type="submit">Sign-Up</button>
+  <br>
+  <br>
+</form>
+{% endblock content %}

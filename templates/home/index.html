@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <!-- Django Static Files -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-1010439877132577",
+        enable_page_level_ads: true
+      });
+    </script>
+
+    {% load static %}
+    <title>Home</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.png' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" href="{% static 'favicon.png' %}">
+    <!-- Bootstrap CSS -->
+    {# Load the tag library #}
+    {% load bootstrap4 %}
+    {# Load CSS and JavaScript #}
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery='full' %}
+
+    {# Display django.contrib.messages as Bootstrap alerts #}
+    {% bootstrap_messages %}
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'home:home' %}">
+      <img src="{% static 'favicon.png' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+      Vik
+   </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <!--I don't really need this but I'll keep it for now, lmao-->
+  </div>
+</nav>
+    <div class="container">
+      <br>
+
+    <div class="alert alert-danger" role="alert">
+          We have made a major update to vik, and the way it functions. . . <br>
+          While we could have spent time making it so that the old and new versions of Vik work in tandem
+          with each other we decided not to as, given our low user base, this would be worth nothing,
+          compared to the amount of features we could add in the same time. <br>
+          Regards, <br> <br>
+          The Vik Development Team <br> ----------------- <br>
+          P.S. The old version of vik can be found at old.vik.fyi
+      </div>
+      <br>
+      <br>
+      <div class="jumbotron">
+        <h1 class="display-4">Vik</h1>
+        <p class="lead">Connect with others:<br /> Share stories, news, and quotes! <br> PS: If you're worried about unsecure notification that you may (or not) recieve from your browser visit "secure.vik.fyi". (Nothing is different between the secure and unsecure version)
+        <p class="lead">
+          <a class="btn btn-primary btn-lg" href="{% url 'pages:home' %}" role="button">Go to Vik</a>
+        </p>
+      </div>
+      <div class="jumbotron">
+        <h1 class="display-4">Vik Polls</h1>
+        <p class="lead"><br><br>Free polls, no ads, real answers</p>
+        <p class="lead"> <br>
+          <a class="btn btn-primary btn-lg" href="{% url 'polls:home' %}">Go to Vik Polls</a>
+      </div>
+    </div>
+  </body>
+</html>

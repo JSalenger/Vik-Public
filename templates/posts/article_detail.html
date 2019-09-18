@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'semantic-ui/dist/components/comment.css' %}">
+<div class="container">
+  <br>
+  <br>
+
+  <h3>{{ article.title }} &middot; {{ article.author }} <br> <strong>On: {{ article.date }}</strong>
+  </h3>
+  <br>
+  <div class="ui section divider"></div>
+  {% if article.image %}
+    <img src="{{ article.image.url }}" class="ui image fluid">
+  {% endif %}
+  <br>
+  <h5>{% if article.body %}
+      {{ article.body }}
+      {% endif %}</h5>
+    <br>
+  {% if user.is_authenticated %}
+    <h2>Make a comment</h2>
+    <form class="comment_form" action="." method="post">
+        {% csrf_token %}
+        {{ comment_form|crispy }}
+        <button class="ui button" type="submit">Submit</button>
+    </form>
+  <br>
+  {% endif %}
+  <h2>Comments</h2>
+<!-- Comment -->
+  <div class="ui comments large">
+      {% for comment in article.comments.all %}
+    <div class="comment">
+      <a class="ui image avatar fluid">
+        <img src="{% static 'favicon.png' %}">
+      </a>
+      <div class="content">
+        <a class="author">{{ comment.author }}</a>
+        {{ comment.comment|linebreaks }}
+      </div>
+    </div>
+      {% endfor %}
+  </div>
+  <br>
+</div>
+{% endblock content %}
